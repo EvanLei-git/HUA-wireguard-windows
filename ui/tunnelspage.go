@@ -18,6 +18,7 @@ import (
 	"github.com/lxn/walk"
 
 	"golang.zx2c4.com/wireguard/windows/conf"
+	"golang.zx2c4.com/wireguard/windows/huavpn"
 	"golang.zx2c4.com/wireguard/windows/l18n"
 	"golang.zx2c4.com/wireguard/windows/manager"
 )
@@ -147,12 +148,25 @@ func (tp *TunnelsPage) CreateToolbar() error {
 		return err
 	}
 	tp.AddDisposable(addMenu)
+	
+	// HUA VPN Easy Connect action
+	huaAction := walk.NewAction()
+	huaAction.SetText(l18n.Sprintf("&HUA VPN Easy Connect"))
+	huaActionIcon, _ := loadSystemIcon("imageres", -5, 16) // Network icon
+	huaAction.SetImage(huaActionIcon)
+	huaAction.SetShortcut(walk.Shortcut{walk.ModControl, walk.KeyH})
+	huaAction.Triggered().Attach(tp.onHUAConnect)
+	addMenu.Actions().Add(huaAction)
+	
+	// Separator
+	addMenu.Actions().Add(walk.NewSeparatorAction())
+	
 	importAction := walk.NewAction()
 	importAction.SetText(l18n.Sprintf("&Import tunnel(s) from file…"))
 	importActionIcon, _ := loadSystemIcon("imageres", -3, 16)
 	importAction.SetImage(importActionIcon)
 	importAction.SetShortcut(walk.Shortcut{walk.ModControl, walk.KeyO})
-	importAction.SetDefault(true)
+	importAction.SetDefault(false)
 	importAction.Triggered().Attach(tp.onImport)
 	addMenu.Actions().Add(importAction)
 	addAction := walk.NewAction()
@@ -543,6 +557,13 @@ func (tp *TunnelsPage) onDelete() {
 
 func (tp *TunnelsPage) onSelectAll() {
 	tp.listView.SetSelectedIndexes([]int{-1})
+}
+
+func (tp *TunnelsPage) onHUAConnect() {
+	err := huavpn.ShowHUAConnectDialog(tp.Form())
+	if err != nil {
+		showErrorCustom(tp.Form(), l18n.Sprintf("HUA VPN Error"), err.Error())
+	}
 }
 
 func (tp *TunnelsPage) onImport() {

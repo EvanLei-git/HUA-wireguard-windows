@@ -50,7 +50,7 @@ func runAboutDialog(owner walk.Form) error {
 		showingAboutDialog = nil
 	}()
 	disposables.Add(showingAboutDialog)
-	showingAboutDialog.SetTitle(l18n.Sprintf("About WireGuard"))
+	showingAboutDialog.SetTitle(l18n.Sprintf("About HUA VPN Client"))
 	showingAboutDialog.SetLayout(vbl)
 	if icon, err := loadLogoIcon(32); err == nil {
 		showingAboutDialog.SetIcon(icon)
@@ -66,7 +66,7 @@ func runAboutDialog(owner walk.Form) error {
 	iv.SetCursor(walk.CursorHand())
 	iv.MouseUp().Attach(func(x, y int, button walk.MouseButton) {
 		if button == walk.LeftButton {
-			win.ShellExecute(showingAboutDialog.Handle(), nil, windows.StringToUTF16Ptr("https://www.wireguard.com/"), nil, nil, win.SW_SHOWNORMAL)
+			win.ShellExecute(showingAboutDialog.Handle(), nil, windows.StringToUTF16Ptr("https://www.hua.gr/"), nil, nil, win.SW_SHOWNORMAL)
 		} else if easterEggIndex >= 0 && button == walk.RightButton {
 			if icon, err := loadSystemIcon("moricons", int32(easterEggIndex), 128); err == nil {
 				iv.SetImage(icon)
@@ -82,7 +82,7 @@ func runAboutDialog(owner walk.Form) error {
 	if logo, err := loadLogoIcon(128); err == nil {
 		iv.SetImage(logo)
 	}
-	iv.Accessibility().SetName(l18n.Sprintf("WireGuard logo image"))
+	iv.Accessibility().SetName(l18n.Sprintf("HUA VPN Client logo image"))
 
 	wgLbl, err := walk.NewTextLabel(showingAboutDialog)
 	if err != nil {
@@ -91,7 +91,7 @@ func runAboutDialog(owner walk.Form) error {
 	wgFont, _ := walk.NewFont("Segoe UI", 16, walk.FontBold)
 	wgLbl.SetFont(wgFont)
 	wgLbl.SetTextAlignment(walk.AlignHCenterVNear)
-	wgLbl.SetText("WireGuard")
+	wgLbl.SetText("HUA VPN Client")
 
 	detailsLbl, err := walk.NewTextLabel(showingAboutDialog)
 	if err != nil {
@@ -107,7 +107,7 @@ func runAboutDialog(owner walk.Form) error {
 	copyrightFont, _ := walk.NewFont("Segoe UI", 7, 0)
 	copyrightLbl.SetFont(copyrightFont)
 	copyrightLbl.SetTextAlignment(walk.AlignHCenterVNear)
-	copyrightLbl.SetText("Copyright © 2015-2022 Jason A. Donenfeld. All Rights Reserved.")
+	copyrightLbl.SetText("Copyright © 2015-2022 Jason A. Donenfeld. All Rights Reserved.\nHUA Customization © 2024 Harokopio University of Athens.")
 
 	buttonCP, err := walk.NewComposite(showingAboutDialog)
 	if err != nil {
@@ -129,12 +129,12 @@ func runAboutDialog(owner walk.Form) error {
 		return err
 	}
 	donatePB.SetAlignment(walk.AlignHCenterVNear)
-	donatePB.SetText(l18n.Sprintf("♥ &Donate!"))
+	donatePB.SetText(l18n.Sprintf("&Visit HUA"))
 	donatePB.Clicked().Attach(func() {
 		if easterEggIndex == -1 {
 			easterEggIndex = 0
 		}
-		win.ShellExecute(showingAboutDialog.Handle(), nil, windows.StringToUTF16Ptr("https://www.wireguard.com/donations/"), nil, nil, win.SW_SHOWNORMAL)
+		win.ShellExecute(showingAboutDialog.Handle(), nil, windows.StringToUTF16Ptr("https://www.hua.gr/"), nil, nil, win.SW_SHOWNORMAL)
 		showingAboutDialog.Accept()
 	})
 	walk.NewHSpacer(buttonCP)

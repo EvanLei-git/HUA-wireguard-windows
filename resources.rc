@@ -12,7 +12,7 @@
 
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST manifest.xml
-7 ICON ui/icon/wireguard.ico
+7 ICON hua.ico
 8 ICON ui/icon/dot.ico
 wireguard.dll RCDATA wireguard.dll
 
@@ -28,13 +28,13 @@ BEGIN \
   BEGIN \
     BLOCK block_id \
     BEGIN \
-      VALUE "CompanyName", "WireGuard LLC" \
+      VALUE "CompanyName", "Harokopio University of Athens" \
       VALUE "FileDescription", file_desc \
       VALUE "FileVersion", EXPAND(WIREGUARD_VERSION_STR) \
-      VALUE "InternalName", "wireguard-windows" \
-      VALUE "LegalCopyright", "Copyright © 2015-2022 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved." \
-      VALUE "OriginalFilename", "wireguard.exe" \
-      VALUE "ProductName", "WireGuard" \
+      VALUE "InternalName", "hua-vpn-client" \
+      VALUE "LegalCopyright", "Copyright © 2015-2022 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved. HUA Customization © 2024 Harokopio University of Athens." \
+      VALUE "OriginalFilename", "hua-vpn-client.exe" \
+      VALUE "ProductName", "HUA VPN Client" \
       VALUE "ProductVersion", EXPAND(WIREGUARD_VERSION_STR) \
       VALUE "Comments", comments \
     END \
@@ -48,22 +48,22 @@ END
 LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 VERSIONINFO_TEMPLATE(
   "040904b0", 0x409, 0x4b0,
-  "WireGuard: Fast, Modern, Secure VPN Tunnel",
-  "https://www.wireguard.com/"
+  "HUA VPN Client: Secure Academic VPN Solution",
+  "https://www.hua.gr/"
 )
 
 LANGUAGE LANG_FRENCH, SUBLANG_DEFAULT
 VERSIONINFO_TEMPLATE(
   "040c04b0", 0x40c, 0x4b0,
-  "WireGuard: tunnel VPN rapide, moderne, sécurisé",
-  "https://www.wireguard.com/"
+  "HUA VPN Client: Solution VPN académique sécurisée",
+  "https://www.hua.gr/"
 )
 
 LANGUAGE LANG_ITALIAN, SUBLANG_DEFAULT
 VERSIONINFO_TEMPLATE(
   "041004b0", 0x410, 0x4b0,
-  "WireGuard: Tunnel VPN veloce, moderno e sicuro",
-  "https://www.wireguard.com/"
+  "HUA VPN Client: Soluzione VPN accademica sicura",
+  "https://www.hua.gr/"
 )
 
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
